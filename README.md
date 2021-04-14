@@ -9,9 +9,13 @@ I used the Brainflow ML model to determine concentration and relaxation levels f
 If you want to learn more about Brainflow, visit their website https://brainflow.org/
 
 Contact:
+
 Email: ahnaafk@gmail.com
-Website: ahnaafkhan.com
+
+Website: https://ahnaafkhan.com/
+
 LinkedIn: https://www.linkedin.com/in/ahnaaf-khan/
+
 
 Feel free to contact me anytime about this project or BCIs in general.
 
