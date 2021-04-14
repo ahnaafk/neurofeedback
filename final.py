@@ -15,6 +15,8 @@ from brainflow.ml_model import MLModel, BrainFlowMetrics, BrainFlowClassifiers, 
 
 def main(i):
     BoardShim.enable_dev_board_logger()
+    BoardShim.disable_board_logger() #optional. take this out for initial setup for your board.
+
     # use synthetic board for demo
     params = BrainFlowInputParams()
     board_id = BoardIds.SYNTHETIC_BOARD.value
@@ -83,7 +85,6 @@ def main(i):
         bands = DataFilter.get_avg_band_powers(
             data, eeg_channels, sampling_rate, True)
         feature_vector = np.concatenate((bands[0], bands[1]))
-        print(feature_vector)
 
         # calc concentration
         concentration_params = BrainFlowModelParams(
@@ -91,6 +92,7 @@ def main(i):
         concentration = MLModel(concentration_params)
         concentration.prepare()
         print('Concentration: %f' % concentration.predict(feature_vector))
+        concentrated_measure = concentration.predict(feature_vector)
         concentration.release()
 
         # calc relaxation
@@ -99,6 +101,7 @@ def main(i):
         relaxation = MLModel(relaxation_params)
         relaxation.prepare()
         print('Relaxation: %f' % relaxation.predict(feature_vector))
+        relaxed_measure = relaxation.predict(feature_vector)
         relaxation.release()
       
         #appending eeg data to lists 
@@ -117,6 +120,15 @@ def main(i):
         plt.tight_layout()
         keep_alive = False #resetting stream so that matplotlib can plot data
       
+        if concentrated_measure >= 0.5:
+            print("GOOD KEEP CONCENTRATING") #a program screaming at you to concentrate should do the trick :)
+        else:
+            print("WHERE IS THE CONCENTRATION??")
+        
+        if relaxed_measure >= 0.5:
+            print("YES RELAX MORE")
+        else:
+            print("NO, START RELAXING") 
 
     board.stop_stream()
     board.release_session()
