@@ -1,4 +1,4 @@
-# neurofeedback
+# Neurofeedback Using Brainflow
 
 NOTE: write_to_csv and write_to_graph are meant to be proof of concepts ONLY. The programs don't correctly plot data,
 I just wanted to show that it's possible to stream data to a CSV and plot it that way.
