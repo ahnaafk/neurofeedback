@@ -1,4 +1,3 @@
-import time
 import brainflow
 import numpy as np
 import threading
